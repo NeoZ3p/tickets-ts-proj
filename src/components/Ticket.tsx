@@ -1,20 +1,22 @@
 import React, {FC} from 'react';
 import {Card, Container, Row, Col} from "react-bootstrap";
+import {ITicket} from '../interfaces/ITicket';
+import {TicketProps} from '../interfaces/TicketProps';
 
-{/*TODO map method card value */
-}
+export const Ticket: FC<TicketProps> = ({ticket}) => {
 
-export const Ticket: FC = () => {
+    const {price, carrier, segments} = ticket
+
     return (
         <Card style={{boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)'}} className='mt-4 mb-4'>
             <Card.Body>
                 <Container>
                     <Row>
                         <Col>
-                            <h2>10 000р</h2>
+                            <h2>{price}</h2>
                         </Col>
                         <Col className='text-end'>
-                            <img src="http://pics.avs.io/99/36/S7.png" alt="air-logo"/>
+                            <img src={`http://pics.avs.io/99/36/${carrier}.png`} alt="air-logo"/>
                         </Col>
                     </Row>
                     <Row className='mt-2 mb-1'>
