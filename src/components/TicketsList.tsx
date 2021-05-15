@@ -6,6 +6,7 @@ import {searchIdState} from '../store/searchIdState'
 import {ticketState} from '../store/ticketState'
 import {ITicket} from '../interfaces/ITicket'
 import {ISearchId} from '../interfaces/ISearchId'
+import {ITicketsResponse} from '../interfaces/ITicketsResponse';
 
 
 export const TicketsList: FC = () => {
@@ -17,7 +18,7 @@ export const TicketsList: FC = () => {
 
         const ticketsData = await fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchIdData.searchId}`)
             .then(response => response.json())
-            .then((response: ITicket[]) => ticketState.tickets.push(response))
+            .then((response: ITicketsResponse) => ticketState.tickets = response.tickets)
     }
 
     useEffect(() => {
@@ -28,15 +29,17 @@ export const TicketsList: FC = () => {
         <>
             <Tabs className='justify-content-center '>
                 <Tab eventKey="theCheapest" title="САМЫЙ ДЕШЕВЫЙ">
-                    {ticketState.tickets.map((ticket) => {
-                        console.log(ticket)
-                        // return <Ticket ticket={ticket}/>
+                    {ticketState.tickets.map((ticket, id) => {
+                        return <Ticket key={id} ticket={ticket}/>
                     })}
                     <MoreTickets/>
                 </Tab>
-                <Tab eventKey="theFastest" title="САМЫЙ БЫСТРЫЙА">
+                <Tab eventKey="theFastest" title="САМЫЙ БЫСТРЫЙ">
+                    {ticketState.tickets.map((ticket, id) => {
+                        return <Ticket key={id} ticket={ticket}/>
+                    })}
                     <MoreTickets/>
-                </Tab>эт
+                </Tab>
             </Tabs>
         </>
     );

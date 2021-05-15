@@ -13,7 +13,7 @@ export const Ticket: FC<TicketProps> = ({ticket}) => {
                 <Container>
                     <Row>
                         <Col>
-                            <h2>{price}</h2>
+                            <h2>{price} руб</h2>
                         </Col>
                         <Col className='text-end'>
                             <img src={`http://pics.avs.io/99/36/${carrier}.png`} alt="air-logo"/>
