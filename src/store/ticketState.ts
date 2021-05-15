@@ -1,7 +1,8 @@
 import {makeAutoObservable} from 'mobx'
+import {ITicket} from '../interfaces/ITicket';
 
 class TicketState {
-    tickets: object[] = [];
+    tickets: ITicket[] = [];
 
     constructor() {
         makeAutoObservable(this);
