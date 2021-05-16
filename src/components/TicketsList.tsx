@@ -7,23 +7,14 @@ import {ticketState} from '../store/ticketState'
 import {ITicket} from '../interfaces/ITicket'
 import {ISearchId} from '../interfaces/ISearchId'
 import {ITicketsResponse} from '../interfaces/ITicketsResponse';
+import {observer} from 'mobx-react-lite';
 
 
-export const TicketsList: FC = () => {
-
-    async function fetchData() {
-        const searchIdData = await fetch('https://front-test.beta.aviasales.ru/search')
-            .then(response => response.json())
-            .then((response: ISearchId) => searchIdState.state = response)
-
-        const ticketsData = await fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchIdData.searchId}`)
-            .then(response => response.json())
-            .then((response: ITicketsResponse) => ticketState.tickets = response.tickets)
-    }
+export const TicketsList: FC = observer(() => {
 
     useEffect(() => {
-        fetchData()
-    })
+        ticketState.getTickets();
+    }, [])
 
     return (
         <>
@@ -43,4 +34,4 @@ export const TicketsList: FC = () => {
             </Tabs>
         </>
     );
-};
+});
