@@ -8,6 +8,7 @@ configure({
 
 class TicketState {
     tickets: ITicket[] = [];
+    loadingContent: boolean = true
 
     constructor() {
         makeAutoObservable(this);
@@ -18,6 +19,7 @@ class TicketState {
         const ticketsResp = await API.get(`/tickets?searchId=${searchResp.data.searchId}`);
 
         this.tickets = ticketsResp.data.tickets;
+        this.loadingContent = false;
     }
 
 }

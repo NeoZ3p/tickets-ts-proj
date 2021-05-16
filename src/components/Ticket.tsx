@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
 import {Card, Container, Row, Col} from "react-bootstrap";
-import {ITicket} from '../interfaces/ITicket';
 import {TicketProps} from '../interfaces/TicketProps';
 
 export const Ticket: FC<TicketProps> = ({ticket}) => {
@@ -22,8 +21,8 @@ export const Ticket: FC<TicketProps> = ({ticket}) => {
     const date1 = new Date(segments[1].date);
     const formatedDate0 = new Intl.DateTimeFormat('ru-RU', {hour: '2-digit', minute: '2-digit'}).format(date0);
     const formatedDate1 = new Intl.DateTimeFormat('ru-RU', {hour: '2-digit', minute: '2-digit'}).format(date1);
-    const readyDate0 = date0.setMinutes(date0.getMinutes() + dur0);
-    const readyDate1 = date1.setMinutes(date1.getMinutes() + dur1);
+    // const readyDate0 = date0.setMinutes(date0.getMinutes() + dur0);
+    // const readyDate1 = date1.setMinutes(date1.getMinutes() + dur1);
 
     //NUM OF STOPS
     const numOfStops0 = segments[0].stops.length;

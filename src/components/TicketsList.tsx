@@ -5,17 +5,25 @@ import {MoreTickets} from "./MoreTickets";
 import {ticketState} from '../store/ticketState'
 import {observer} from 'mobx-react-lite';
 import {firstFiveTicketState} from '../store/firstFiveTicketState';
+import {Loader} from './Loader';
 
 
 export const TicketsList: FC = observer(() => {
 
     useEffect(() => {
-        ticketState.getTickets();
-        //first five tickets
-        const getFiveTickets = ticketState.tickets.slice(0, 6);
+        (async () => {
+            await ticketState.getTickets();
+            //first five tickets
+            const getFiveTickets = ticketState.tickets.slice(0, 5);
 
-        firstFiveTicketState.fiveTickets = getFiveTickets;
+            firstFiveTicketState.fiveTickets = getFiveTickets;
+        })()
+
     }, [])
+
+    if (ticketState.loadingContent) {
+        return <Loader/>
+    }
 
     return (
         <>
